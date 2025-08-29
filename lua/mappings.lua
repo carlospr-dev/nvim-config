@@ -27,7 +27,7 @@ end)
 
 keymap.set("n", "<leader>ra", ":%s/")
 
-keymap.set("n", "<leader>y", '"+y')          -- Yank to system clipboard
+keymap.set("n", "<leader>y", '"+y')            -- Yank to system clipboard
 keymap.set('n', '<leader>cl', ':nohl<CR>', {}) -- Clear search highlighting
 
 -- Do things without affecting the registers
@@ -99,21 +99,21 @@ keymap.set("n", "<leader>git", ":Gitsigns ")
 keymap.set("n", "<leader>gic", ":!git commit -m \"")
 
 -- Line Operations
-keymap.set("v", "<leader>en", "$")  -- Move to end of line in visual mode
-keymap.set("v", "<leader>rt", "^")  -- Move to first non-blank character in visual mode
-keymap.set("n", "<leader>en", "$")  -- Move to end of line in normal mode
-keymap.set("n", "<leader>rt", "^")  -- Move to first non-blank character in normal mode
+keymap.set("v", "<leader>en", "$") -- Move to end of line in visual mode
+keymap.set("v", "<leader>rt", "^") -- Move to first non-blank character in visual mode
+keymap.set("n", "<leader>en", "$") -- Move to end of line in normal mode
+keymap.set("n", "<leader>rt", "^") -- Move to first non-blank character in normal mode
 
 -- Search word in current doc
-keymap.set("n", "<leader>fw", "/")             -- start forward search
+keymap.set("n", "<leader>fw", "/")                       -- start forward search
 
-set_and_store_last_cmd("n", "<leader>lb", ":t.<CR>")       -- make a copy of the current line and put it below the line
-set_and_store_last_cmd("n", "<leader>lt", ":t.-1<CR>")     -- make a copy of the current line and put it above the line
+set_and_store_last_cmd("n", "<leader>lb", ":t.<CR>")     -- make a copy of the current line and put it below the line
+set_and_store_last_cmd("n", "<leader>lt", ":t.-1<CR>")   -- make a copy of the current line and put it above the line
 set_and_store_last_cmd("n", "<leader>lmt", ":m .-2<CR>") -- move current line up with cursor
 set_and_store_last_cmd("n", "<leader>lmb", ":m .+1<CR>") -- move current line down with cursor
 
-keymap.set("v", "lb", ":m '>+1<CR>gv=gv") -- move selected lines down and reselect
-keymap.set("v", "lt", ":m '<-2<CR>gv=gv") -- move selected lines up and reselect
+keymap.set("v", "lb", ":m '>+1<CR>gv=gv")                -- move selected lines down and reselect
+keymap.set("v", "lt", ":m '<-2<CR>gv=gv")                -- move selected lines up and reselect
 
 -- Navigations
 keymap.set("n", "<C-d>", "<C-d>zz")
@@ -164,16 +164,16 @@ vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>pws', function()
-      local word = vim.fn.expand("<cword>")
-      builtin.grep_string({ search = word })
-  end)
+  local word = vim.fn.expand("<cword>")
+  builtin.grep_string({ search = word })
+end)
 vim.keymap.set('n', '<leader>pWs', function()
-      local word = vim.fn.expand("<cWORD>")
-      builtin.grep_string({ search = word })
-  end)
+  local word = vim.fn.expand("<cWORD>")
+  builtin.grep_string({ search = word })
+end)
 
-local function lsp_ops(desc)
-return { buffer = bufnr, desc = "LSP " .. desc }
+local function lsp_ops(desc, bufnr)
+  return { buffer = bufnr, desc = "LSP " .. desc }
 end
 
 vim.keymap.set("n", "gD", vim.lsp.buf.declaration, lsp_ops "Lsp Go to declaration")
@@ -182,3 +182,6 @@ vim.keymap.set("n", "K", vim.lsp.buf.hover, lsp_ops "Lsp hover information")
 vim.keymap.set("n", "gI", vim.lsp.buf.implementation, lsp_ops "Lsp Go to implementation")
 vim.keymap.set("n", "<leader>sh", vim.lsp.buf.signature_help, lsp_ops "Lsp Show signature help")
 
+-- Lsp code actions
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, lsp_ops "Lsp Show code actions")
+vim.keymap.set("n", "<leader>rr", vim.diagnostic.open_float, lsp_ops "Lsp Show line diagnostics")
