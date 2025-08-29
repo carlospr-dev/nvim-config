@@ -93,7 +93,7 @@ return {
       { "cs", mode = { "n" } },
       { "ds", mode = { "n" } },
       { "ys", mode = { "n" } },
-      { "s", mode = { "v", "x" } },
+      { "s",  mode = { "v", "x" } },
     },
     config = function()
       return require("configs.surround").setup()
@@ -119,4 +119,16 @@ return {
     event = "VeryLazy",
     opts = require "configs.which-key",
   },
+  -- add this to the file where you setup your other plugins:
+  {
+    "monkoose/neocodeium",
+    event = "VeryLazy",
+    config = function()
+      local neocodeium = require("neocodeium")
+      neocodeium.setup()
+      vim.keymap.set("i", "<A-Tab>", neocodeium.accept)
+      vim.keymap.set("i", "<A-t>", neocodeium.accept)
+    end,
+  }
+
 }
