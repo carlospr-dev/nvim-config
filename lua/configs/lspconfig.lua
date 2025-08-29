@@ -47,7 +47,6 @@ lspconfig.emmet_language_server.setup {
     "pug",
     "sass",
     "scss",
-    "typescriptreact",
   },
 }
 
@@ -191,3 +190,16 @@ lspconfig.sourcekit.setup {
     },
   },
 }
+lspconfig.ts_ls.setup({
+  on_init = init,
+  on_attach = attach,
+  capabilities = capabilities,
+  filetypes = {
+    "javascript",
+    "javascriptreact",
+    "javascript.jsx",
+    "typescript",
+    "typescriptreact",
+    "typescript.tsx",
+  }
+})
